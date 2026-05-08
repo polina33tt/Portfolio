@@ -1,0 +1,52 @@
+  <!DOCTYPE html>
+  <html lang="ru" data-theme="dark">
+  <head>
+    <meta charset="UTF-8">
+    <title>SweatyPalms</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="logo" href="index.html"><span class="logo-badge"></span><div class="logo-text"><strong>SweatyPalms</strong></div></a>
+        <nav class="main-nav"><a href="index.html" class="nav-link">Главная</a><a href="catalog.html" class="nav-link active">Каталог</a></nav>
+        <div class="header-actions"><button id="themeToggle" class="icon-btn">🌙</button></div>
+      </div>
+    </header>
+    <main class="container">
+      <h1 style="font-size: 2.5rem; margin: 20px 0 10px;">📡 НЕОНОВЫЙ КАТАЛОГ</h1>
+      <div class="toolbar">
+        <div class="toolbar-grid">
+          <input type="text" id="searchInput" class="search-input" placeholder="🔍 Поиск по названию...">
+          <div class="filter-group" id="difficultyChips">
+            <button data-diff="all" class="filter-chip active">Все</button>
+            <button data-diff="easy" class="filter-chip">Лёгкие</button>
+            <button data-diff="medium" class="filter-chip">Средние</button>
+            <button data-diff="hard" class="filter-chip">Сложные</button>
+          </div>
+          <div class="filter-group">
+            <button id="sortTitleBtn" class="filter-chip">📛 По названию</button>
+            <button id="sortDiffBtn" class="filter-chip">📊 По сложности</button>
+          </div>
+          <label style="display: flex; gap: 10px; align-items: center;"><input type="checkbox" id="favoritesOnly"> ⭐ Только избранное</label>
+          <button id="resetFiltersBtn" class="btn btn-secondary">Сбросить всё</button>
+        </div>
+      </div>
+      <div class="catalog-summary">
+        <div class="stat-card">Всего: <strong id="totalCount">0</strong></div>
+        <div class="stat-card">Показано: <strong id="visibleCount">0</strong></div>
+      </div>
+      <div id="catalogGrid" class="catalog-grid"></div>
+    </main>
+    <footer><div class="container">SweatyPalms — выбери игру и погрузись в цифровой неон</div></footer>
+  </div>
+  <script src="main.js"></script>
+  </body>
+  </html>
+
+
+
+
+
+

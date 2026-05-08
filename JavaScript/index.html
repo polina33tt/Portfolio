@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Учебный проект ВД-4-23</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+
+    
+        <header class="header">
+            <h1 id="projectTitle">Название проекта</h1>
+            <p id="projectDescription">Описание проекта</p>
+
+            <div class="meta-info">
+                <p>Тема: <span id="projectTheme"></span></p>
+                <p>Автор: <span id="projectAuthor"></span></p>
+                <p>Год: <span id="projectYear"></span></p>
+                <p>Версия: <span id="versionElement"></span></p>
+            </div>
+
+           
+            <div class="theme-toggle-wrapper">
+                <span class="icon">☀️</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="themeToggle">
+                    <span class="slider"></span>
+                </label>
+                <span class="icon">🌙</span>
+            </div>
+        </header>
+
+     
+        <div class="controls">
+            <select id="citySelect"></select>
+            <button id="fetchBtn">🌤 Получить прогноз</button>
+        </div>       
+        <div id="warningMessage" style="display:none;">
+            <p>⚠️ ТЫ что наделал, проект не до конца работает</p>
+        </div>
+
+       
+        <h2 class="section-title">Текущая погода</h2>
+        <div class="loading-bar" id="loadingBar">
+            <div class="bar-inner" id="barInner"></div>
+        </div>
+        <div id="currentWeather"></div>
+
+       
+        <h2 class="section-title">Прогноз на 5 дней</h2>
+        <div id="forecastResult"></div>
+
+        
+        <footer class="footer">
+            <p id="projectStatus"></p>
+            <p id="infoElement"></p>
+            <div id="projectDetails">
+                <p>Проект находится в активной разработке</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>

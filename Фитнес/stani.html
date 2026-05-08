@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Стань частью нашего клуба - ArtFit</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+    <main>
+        <section class="join-hero">
+            <div class="container">
+                <button class="close-button" onclick="closeForm()">×</button>
+                <h1>Стань частью нашего клуба</h1>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="join-container">
+                <div class="join-form">
+                    <h2 class="form-title">Присоединяйтесь к ArtFit</h2>
+                    <p class="form-description">Заполните форму ниже и мы свяжемся с вами для оформления клубной карты</p>
+                    
+                    <form>
+                        <div class="name-row">
+                            <div class="form-group">
+                                <label for="firstName">Имя</label>
+                                <input type="text" id="firstName" class="form-control" placeholder="Имя" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lastName">Фамилия</label>
+                                <input type="text" id="lastName" class="form-control" placeholder="Фамилия" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Телефон</label>
+                            <input type="tel" id="phone" class="form-control" placeholder="+7 (999) 000-00-00" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Почта</label>
+                            <input type="email" id="email" class="form-control" placeholder="your@email.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="wishes">Ваши пожелания</label>
+                            <textarea id="wishes" class="form-control" placeholder="Расскажите нам о ваших пожеланиях..."></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Отправить</button>
+                    </form>
+                </div>
+            </div>
+
+  
+    </main>
+
+    <script>
+        function closeForm() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

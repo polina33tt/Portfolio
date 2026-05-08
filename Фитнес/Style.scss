@@ -1,0 +1,1423 @@
+$primary-color: #D9C3C3;
+$secondary-color: #D19B9B;
+$pink: #FF69B4;
+$light-pink: rgba(255, 182, 193, 0.3);
+$dark-pink: #000000;
+$text-color: #333;
+$light-text: #fff;
+$light-bg: #f9f9f9;
+$dark-bg: #000;
+$spacing-sm: 8px;
+$spacing-md: 15px;
+$spacing-lg: 30px;
+$spacing-xl: 45px;
+$border-radius: 10px;
+$shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+$transition: all 0.3s ease;
+
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin gradient-bg {
+  background: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
+}
+
+@mixin card-style {
+  background: $light-text;
+  border-radius: $border-radius;
+  box-shadow: $shadow;
+  transition: $transition;
+}
+
+@mixin hover-effect {
+  transition: $transition;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+}
+
+
+
+
+* {
+  margin: 0;  
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  color: #000;
+  background-color: var(--light-bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+}
+
+main {
+  flex: 1;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: $transition;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+header {
+  background-color: $primary-color;
+  padding: $spacing-md 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  .container {
+    @include flex-between;
+  }
+
+  .logo img {
+    width: 60px;
+    height: auto;
+  }
+
+  nav ul {
+    display: flex;
+    gap: $spacing-md;
+
+    li a {
+      color: $text-color;
+      font-weight: 600;
+      padding: $spacing-sm;
+      border-radius: $border-radius;
+      transition: $transition;
+
+      &:hover,
+      &.active {
+        background-color: $light-text;
+        color: $text-color;
+      }
+    }
+  }
+}
+
+.header-buttons {
+  display: flex;
+  gap: $spacing-sm;
+
+  a {
+    padding: $spacing-sm $spacing-md;
+    border-radius: $border-radius;
+    font-size: 0.9rem;
+    transition: $transition;
+    font-weight: 600;
+
+    &:first-child {
+      color: $text-color;
+    }
+
+    &.button,
+    &.btn,
+    &.nav-btn,
+    &.cta-button {
+      background-color: $secondary-color;
+      color: $light-text;
+
+      &:hover {
+        background-color: color-mix(in srgb, $secondary-color, black 10%);
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
+
+
+.schedule-hero {
+  padding: $spacing-lg 0;
+  text-align: center;
+  color: #000;
+  margin-bottom: $spacing-lg;
+
+  h1 {
+    font-size: 2.2em;
+    margin-bottom: $spacing-sm;
+  }
+
+  p {
+    font-size: 1.2em;
+    opacity: 0.9;
+  }
+}
+
+.schedule-content {
+  padding: $spacing-lg 0;
+}
+
+.schedule-section {
+  margin-bottom: $spacing-xl;
+}
+
+.schedule-table-container {
+  overflow-x: auto;
+  background: $light-text;
+  border-radius: $border-radius;
+  box-shadow: $shadow;
+  padding: $spacing-md;
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+
+  th {
+    background: $primary-color;
+    color: $light-text;
+    padding: $spacing-md;
+    text-align: center;
+    font-weight: 600;
+    border: 1px solid #ddd;
+  }
+
+  td {
+    padding: $spacing-md;
+    text-align: center;
+    border: 1px solid #ddd;
+    height: 60px;
+    vertical-align: middle;
+    font-size: 0.9em;
+
+    &:first-child {
+      background: $light-pink;
+      font-weight: 600;
+      color: $primary-color;
+    }
+  }
+}
+
+
+$activity-colors: (
+  meditation: (#FFEBEE, #000000),
+  free: (#E8F5E8, #000000),
+  stretching: (#F3E5F5, #000000),
+  cardio: (#E3F2FD, #000000),
+  yoga: (#FFF8E1, #000000),
+  massage: (#E0F2F1, #000000),
+  training: (#FCE4EC, #000000),
+  aqua: (#E8EAF6, #000000),
+  pilates: (#FFF3E0, #000000)
+);
+
+@each $activity, $colors in $activity-colors {
+  $bg-color: nth($colors, 1);
+  $text-color: nth($colors, 2);
+
+  .schedule-table .#{$activity} {
+    background: $bg-color;
+    color: $text-color;
+  }
+
+  .legend-color.#{$activity} {
+    background: $bg-color;
+  }
+}
+
+.divider {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, $secondary-color, transparent);
+  margin: $spacing-xl 0;
+  width: 100%;
+}
+
+.legend-section {
+  @include card-style;
+  padding: $spacing-lg;
+
+  h2 {
+    color: $primary-color;
+    font-size: 1.5em;
+    margin-bottom: $spacing-lg;
+    text-align: center;
+  }
+}
+
+.legend-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: $spacing-md;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm;
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.hero {
+  position: relative;
+  text-align: center;
+  margin-bottom: $spacing-lg;
+
+  img {
+    width: 100%;
+    height: 700px;
+    object-fit: cover;
+  }
+
+ .hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: $light-text;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 600px;
+    width: 90%;
+    padding: 20px;
+    text-align: justify;
+}
+
+    h1 {
+      font-size: 2.2em;
+      margin-bottom: $spacing-md;
+    }
+
+    span {
+      color: $pink;
+    }
+  }
+
+
+
+.about {
+  padding: ($spacing-lg * 1.5) 0;
+
+  h2 {
+    text-align: center;
+    font-size: 2.2em;
+    margin-bottom: $spacing-lg;
+    color: $text-color;
+  }
+}
+
+.about-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: $spacing-lg;
+  margin-top: $spacing-lg;
+}
+
+.about-text {
+  flex: 1;
+
+  h3 {
+    font-size: 1.3em;
+    margin-bottom: $spacing-md;
+  }
+
+  p {
+    margin-bottom: $spacing-md;
+  }
+}
+
+.stats {
+  display: flex;
+  gap: $spacing-md;
+  margin-top: $spacing-md;
+}
+
+.stat-item {
+  background-color: $dark-pink;
+  padding: $spacing-md;
+  border-radius: $border-radius;
+  text-align: center;
+  color: $light-text;
+}
+
+.stat-number {
+  font-size: 1.6em;
+  font-weight: bold;
+}
+
+.about-image {
+  flex: 1;
+
+  img {
+    width: 100%;
+    border-radius: $border-radius;
+  }
+}
+
+
+.trainers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: $spacing-lg;
+  padding: $spacing-lg 0;
+}
+
+.trainer-card {
+  @include card-style;
+  padding: $spacing-md;
+  text-align: center;
+  @include hover-effect;
+
+  .trainer-image img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto $spacing-md;
+    object-fit: cover;
+  }
+
+  .trainer-specialty {
+    color: $dark-pink;
+    font-weight: 600;
+    margin-bottom: $spacing-sm;
+  }
+
+  .trainer-name {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: $text-color;
+  }
+
+  &.all-trainers-card {
+    background: transparent;
+    color: $light-text;
+    @include flex-center;
+    flex-direction: column;
+
+    .all-trainers-count {
+      font-size: 1.3em;
+      font-weight: bold;
+      margin-top: $spacing-sm;
+    }
+  }
+}
+
+.reviews-header-section {
+  @include gradient-bg;
+  padding: ($spacing-lg * 1.5) 0;
+  text-align: center;
+  color: $light-text;
+
+  h1 {
+    font-size: 2.2em;
+    margin-bottom: $spacing-md;
+  }
+}
+
+.reviews-intro {
+  font-size: 1em;
+  margin-bottom: $spacing-lg;
+  opacity: 0.9;
+}
+
+.recommendation-box {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-md;
+  background: rgba(255, 255, 255, 0.2);
+  padding: $spacing-md $spacing-lg;
+  border-radius: $border-radius;
+  backdrop-filter: blur(10px);
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: $spacing-lg;
+  padding: ($spacing-lg * 1.5) 0;
+}
+
+.review-card {
+  @include card-style;
+  padding: $spacing-md;
+
+  .review-card-header {
+    @include flex-between;
+    margin-bottom: $spacing-md;
+  }
+
+  .review-author {
+    font-weight: bold;
+    color: $dark-pink;
+  }
+
+  .review-options {
+    color: #999;
+    cursor: pointer;
+  }
+}
+
+.main-content {
+  padding: $spacing-lg 0;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 2.2em;
+  margin-bottom: $spacing-md;
+}
+
+.page-subtitle {
+  text-align: center;
+  margin-bottom: $spacing-lg;
+  color: #666;
+}
+
+.price-section {
+  margin-bottom: $spacing-lg;
+
+  h2 {
+    color: $dark-pink;
+    margin-bottom: $spacing-md;
+    border-left: 3px solid $pink;
+    padding-left: $spacing-md;
+  }
+}
+
+.price-list {
+  @include card-style;
+  padding: $spacing-md;
+}
+
+.price-item {
+  @include flex-between;
+  padding: $spacing-md 0;
+  border-bottom: 1px solid $light-pink;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .service-name {
+    flex: 1;
+  }
+
+  .service-price {
+    font-weight: bold;
+    color: $pink;
+  }
+}
+
+
+.tariff-tabs {
+  display: flex;
+  justify-content: center;
+  gap: $spacing-md;
+  margin-bottom: $spacing-lg;
+  flex-wrap: wrap;
+
+  button {
+    padding: $spacing-md $spacing-lg;
+    background: $light-text;
+    border: 2px solid $primary-color;
+    border-radius: $border-radius;
+    cursor: pointer;
+    transition: $transition;
+    font-weight: 600;
+
+    &.active {
+      background: $pink;
+      color: $light-text;
+      border-color: $pink;
+    }
+  }
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: $spacing-lg;
+}
+
+.card {
+  @include card-style;
+  padding: $spacing-md;
+  position: relative;
+
+  &.card-often-used::before {
+    content: 'Часто используемый';
+    position: absolute;
+    top: -8px;
+    right: 15px;
+    background: $dark-pink;
+    color: $light-text;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+  }
+
+  .card-title {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin-bottom: $spacing-sm;
+  }
+
+  .card-time {
+    color: #666;
+    margin-bottom: $spacing-md;
+  }
+
+  .card-price {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: $pink;
+    margin-bottom: $spacing-md;
+  }
+
+  .card-features {
+    margin-bottom: $spacing-lg;
+
+    li {
+      padding: $spacing-sm 0;
+      border-bottom: 1px solid $light-pink;
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+
+  .card-btn {
+    display: block;
+    width: 100%;
+    padding: $spacing-md;
+    background: $pink;
+    color: $light-text;
+    border: none;
+    border-radius: $border-radius;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: $transition;
+    font-weight: 600;
+    text-align: center;
+
+    &:hover {
+      background: color-mix(in srgb, $pink, black 10%);
+    }
+  }
+}
+
+.promotions-wrapper {
+  padding: $spacing-lg 0;
+}
+
+.promotions-list {
+  display: grid;
+  gap: $spacing-lg;
+  margin-bottom: $spacing-lg;
+}
+
+.promotion-card {
+  display: flex;
+  background: $light-text;
+  border-radius: $border-radius;
+  overflow: hidden;
+  box-shadow: $shadow;
+  align-items: center;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+  max-width: 100%;
+
+  .promo-text {
+    flex: 2;
+    padding: $spacing-lg;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    h3 {
+      color: $dark-pink;
+      margin-bottom: $spacing-md;
+      font-size: 1.3em;
+    }
+    
+    p {
+      line-height: 1.5;
+      color: $text-color;
+    }
+  }
+
+  .promo-image {
+    flex: 1;
+    margin-left: auto; 
+    display: flex;
+    justify-content: flex-end; 
+    padding-right: $spacing-lg;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      max-height: 120px;
+      max-width: 150px;
+    }
+  }
+}
+.permanent-promotions {
+  padding: $spacing-md;
+
+  h3 {
+    color: $dark-pink;
+    margin-bottom: $spacing-md;
+    font-size: 1.3em;
+  }
+
+  li {
+    padding: $spacing-sm 0;
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+  }
+}
+
+.diamond {
+  color: $pink;
+  font-size: 0.9em;
+}
+
+footer {
+  background: $dark-bg;
+  color: $light-text;
+  padding: $spacing-lg 0 $spacing-md;
+  margin-top: auto;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $spacing-lg;
+  margin-bottom: $spacing-lg;
+  padding-bottom: $spacing-lg;
+  border-bottom: 1px solid #555;
+}
+.copyright {
+  text-align: center;
+  padding-top: $spacing-md;
+  color: #999;
+  font-size: 0.9em;
+}
+
+
+.app-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $spacing-sm;
+
+  img {
+    width: 130px;
+  }
+}
+
+.social-icons {
+  display: flex;
+  gap: $spacing-sm;
+  margin-top: $spacing-sm;
+
+  img {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+.footer-nav,
+.club-cards,
+.contacts {
+  h4 {
+    margin-bottom: $spacing-md;
+    color: $pink;
+    font-size: 1.1em;
+  }
+
+  ul li {
+    margin-bottom: $spacing-sm;
+
+    a {
+      color: $light-text;
+      transition: $transition;
+      font-size: 0.9em;
+
+      &:hover {
+        color: $pink;
+      }
+    }
+  }
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: $spacing-sm;
+  gap: $spacing-sm;
+
+  img {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.copyright {
+  text-align: center;
+  padding-top: $spacing-md;
+  color: #999;
+  font-size: 0.9em;
+}
+
+.services {
+  padding: 40px 0;
+
+  h2 {
+    text-align: center;
+    font-size: 2.2em;
+    margin-bottom: 25px;
+    color: #333;
+  }
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.service-card {
+  @include card-style;
+  overflow: hidden;
+  @include hover-effect;
+
+  .service-label {
+    background: $secondary-color;
+    color: $light-text;
+    padding: 12px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+
+  .service-content {
+    padding: 20px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+
+    ul {
+      flex: 1;
+
+      li {
+        padding: 6px 0;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid $light-pink;
+        font-size: 0.9em;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        &::before {
+          content: "•";
+          color: $pink;
+          font-weight: bold;
+          margin-right: 6px;
+          font-size: 1.1em;
+        }
+      }
+    }
+
+    img {
+      width: 90px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: $border-radius;
+    }
+  }
+}
+
+.contact-hero {
+  padding: $spacing-lg 0;
+  text-align: center;
+  color: #000;
+  margin-bottom: $spacing-lg;
+
+  h1 {
+    font-size: 1.8em;
+    margin-bottom: $spacing-sm;
+  }
+}
+
+.contact-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-lg;
+  margin-bottom: $spacing-lg;
+}
+
+.contact-info,
+.contact-form {
+  @include card-style;
+  padding: $spacing-lg;
+
+  h2 {
+    color: $dark-pink;
+    margin-bottom: $spacing-md;
+    font-size: 1.3em;
+  }
+}
+
+.contact-details {
+  margin-bottom: $spacing-lg;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: $spacing-md;
+  gap: $spacing-md;
+}
+
+.contact-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  object-fit: contain;
+}
+
+.contact-text {
+  h4 {
+    color: $dark-pink;
+    margin-bottom: 4px;
+    font-size: 1em;
+  }
+
+  p {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+}
+
+.map-link {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+  color: $pink;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: $spacing-sm;
+  transition: $transition;
+
+  &:hover {
+    color: $dark-pink;
+  }
+}
+
+.form-description {
+  color: #666;
+  margin-bottom: $spacing-lg;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.form-group {
+  margin-bottom: $spacing-md;
+
+  label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 600;
+    color: $text-color;
+    font-size: 0.9rem;
+  }
+}
+
+.form-control {
+  width: 100%;
+  padding: $spacing-sm;
+  border: 2px solid $primary-color;
+  border-radius: $border-radius;
+  font-size: 0.9rem;
+  transition: $transition;
+  font-family: inherit;
+
+  &:focus {
+    outline: none;
+    border-color: $pink;
+  }
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.submit-btn {
+  background: $pink;
+  color: $light-text;
+  border: none;
+  padding: $spacing-md $spacing-lg;
+  border-radius: $border-radius;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: $transition;
+  width: 100%;
+  font-family: inherit;
+
+  &:hover {
+    background: $dark-pink;
+    transform: translateY(-2px);
+  }
+}
+
+.map-section {
+  margin-bottom: $spacing-lg;
+}
+
+.map-container {
+  background: $light-text;
+  border-radius: $border-radius;
+  overflow: hidden;
+  box-shadow: $shadow;
+  height: 400px;
+  position: relative;
+}
+
+.map-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.map-placeholder {
+  display: none;
+}
+
+
+.join-hero {
+  padding: $spacing-lg 0;
+  text-align: center;
+  color: #000;
+  margin-bottom: $spacing-lg;
+  position: relative;
+
+  .close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: $light-text;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    @include flex-center;
+    border-radius: 50%;
+    transition: $transition;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1);
+    }
+  }
+
+  h1 {
+    font-size: 1.8em;
+    margin-bottom: $spacing-sm;
+  }
+}
+
+.join-container {
+  max-width: 600px;
+  margin: 0 auto $spacing-lg;
+}
+
+.join-form {
+  @include card-style;
+  padding: $spacing-lg;
+  position: relative;
+}
+
+.form-title {
+  color: $dark-pink;
+  margin-bottom: $spacing-md;
+  font-size: 1.3em;
+  text-align: center;
+}
+
+.name-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-md;
+}
+
+.benefits-section {
+  background: $light-text;
+  padding: $spacing-lg 0;
+  margin-bottom: $spacing-lg;
+}
+
+.benefits-title {
+  text-align: center;
+  color: $dark-pink;
+  margin-bottom: $spacing-lg;
+  font-size: 1.5em;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: $spacing-lg;
+}
+
+.benefit-card {
+  text-align: center;
+  padding: $spacing-md;
+
+  .benefit-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto $spacing-md;
+    background: $light-pink;
+    border-radius: 50%;
+    @include flex-center;
+    font-size: 1.5em;
+  }
+
+  h3 {
+    color: $dark-pink;
+    margin-bottom: $spacing-sm;
+    font-size: 1.1em;
+  }
+
+  p {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+}
+
+
+.trainers-hero {
+  padding: $spacing-lg 0;
+  text-align: center;
+  color: #000;
+  margin-bottom: $spacing-lg;
+
+  h1 {
+    font-size: 2.2em;
+    margin-bottom: $spacing-sm;
+  }
+}
+
+.trainers-page-content {
+  padding: $spacing-xl 0;
+  min-height: 60vh;
+}
+
+.all-trainers-section {
+  margin-bottom: $spacing-xl;
+}
+
+.trainers-grid .trainer-card:nth-child(n+4) {
+  margin-left: 5px;
+}
+
+.trainer-card {
+  @include card-style;
+  padding: $spacing-lg;
+  text-align: center;
+  @include hover-effect;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 280px;
+
+  .trainer-image {
+    margin-bottom: $spacing-md;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    img {
+      width: 200px;
+      height: 250px;
+      border-radius: $border-radius;
+      object-fit: cover;
+      object-position: top center;
+      border: none;
+    }
+  }
+
+  .trainer-specialty {
+    color: $dark-pink;
+    font-weight: 600;
+    margin-bottom: $spacing-sm;
+    font-size: 1.1em;
+    text-align: center;
+    line-height: 1.4;
+    min-height: 2.8em;
+    @include flex-center;
+  }
+
+  .trainer-name {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: $text-color;
+    margin-top: auto;
+  }
+
+  &.all-trainers-card {
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: $transition;
+    border: 2px solid transparent;
+
+    .all-trainers-btn {
+      background: none;
+      border: none;
+      color: $light-text;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      font: inherit;
+      text-decoration: none;
+    }
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      border-color: $light-text;
+    }
+
+    .all-trainers-text {
+      font-size: 1.3em;
+      font-weight: 600;
+      margin-bottom: $spacing-sm;
+    }
+
+    .all-trainers-count {
+      font-size: 1.8em;
+      font-weight: bold;
+      background: rgba(159, 122, 122, 0.2);
+      padding: 8px 16px;
+      border-radius: 25px;
+    }
+  }
+}
+
+
+@media (max-width: 768px) {
+  .schedule-hero {
+    h1 {
+      font-size: 1.8em;
+    }
+    
+    p {
+      font-size: 1.1em;
+    }
+  }
+  
+  .schedule-table-container {
+    padding: $spacing-sm;
+  }
+  
+  .schedule-table {
+    th,
+    td {
+      padding: $spacing-sm;
+      font-size: 0.8em;
+    }
+  }
+  
+  .legend-items {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .app-links {
+    align-items: center;
+  }
+  
+  .promotion-card {
+    flex-direction: column;
+  }
+
+  .trainers-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: $spacing-md;
+    
+    .trainer-card:nth-child(n+4) {
+      margin-left: 0;
+    }
+    
+    .trainer-card {
+      padding: $spacing-md;
+      max-width: 250px;
+      
+      .trainer-image img {
+        width: 180px;
+        height: 220px;
+      }
+    }
+  }
+
+  .contact-content {
+    grid-template-columns: 1fr;
+    gap: $spacing-md;
+  }
+  
+  .contact-info,
+  .contact-form {
+    padding: $spacing-md;
+  }
+  
+  .map-container {
+    height: 300px;
+  }
+
+  .join-form {
+    padding: $spacing-md;
+  }
+  
+  .name-row {
+    grid-template-columns: 1fr;
+    gap: $spacing-sm;
+  }
+  
+  .benefits-grid {
+    grid-template-columns: 1fr;
+    gap: $spacing-md;
+  }
+
+  .close-button {
+    top: 10px;
+    right: 10px;
+    font-size: 1.5em;
+    width: 35px;
+    height: 35px;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .service-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    
+    img {
+      width: 80px;
+      height: 80px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .schedule-hero h1 {
+    font-size: 1.6em;
+  }
+  
+  .legend-items {
+    grid-template-columns: 1fr;
+  }
+  
+  .legend-section {
+    padding: $spacing-md;
+  }
+  
+  .schedule-table td {
+    height: 50px;
+    padding: $spacing-sm;
+  }
+
+  .page-title {
+    font-size: 1.8em;
+  }
+  
+  .trainers-grid {
+    grid-template-columns: 1fr;
+    
+    .trainer-card {
+      max-width: 100%;
+      
+      .trainer-image img {
+        width: 160px;
+        height: 200px;
+      }
+      
+      .trainer-specialty {
+        font-size: 1em;
+      }
+      
+      .trainer-name {
+        font-size: 1.1em;
+      }
+    }
+  }
+}
+
+

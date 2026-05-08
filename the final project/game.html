@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <title>SweatyPalms</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="page-shell">
+  <header class="site-header glass">
+    <div class="container header-inner">
+      <a class="logo" href="index.html"><span class="logo-badge"></span><div class="logo-text"><strong>SweatyPalms</strong></div></a>
+      <nav class="main-nav"><a href="index.html" class="nav-link">Главная</a><a href="catalog.html" class="nav-link">Каталог</a></nav>
+      <div class="header-actions"><button id="themeToggle" class="icon-btn">🌙</button></div>
+    </div>
+  </header>
+  <main class="section">
+    <div class="container">
+      <div id="gameHeader" class="game-header glass"></div>
+      <div class="game-layout">
+        <section class="game-main glass">
+          <div class="game-main-header"><h2>🎮 Игровой блок</h2><div><button id="restartGameBtn" class="btn btn-primary">🔄 Перезапустить</button><button id="favoriteGameBtn" class="btn btn-secondary">⭐ В избранное</button></div></div>
+          <div id="gameMount" class="game-mount"><p class="placeholder-text">Загрузка игры...</p></div>
+        </section>
+        <aside class="game-sidebar">
+          <div class="info-card glass"><h3>📖 Правила</h3><div id="rulesBlock"></div></div>
+          <div class="info-card glass"><h3>💡 Подсказки</h3><div id="implementationHints"></div></div>
+          <div class="info-card glass"><h3>🛠️ Навыки</h3><div id="skillsBlock"></div></div>
+        </aside>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer"><div class="container">Наслаждайтесь игрой!</div></footer>
+</div>
+<script src="main.js"></script>
+</body>
+</html>
